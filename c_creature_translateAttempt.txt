@@ -1,0 +1,169 @@
+class c_effect {
+	// Just a data class
+	public target : string;
+	public type : string;
+	public source : string;
+	public stackability : number;
+	public amount : number;
+	constructor(
+		_target : string,
+		_type : string,
+		_source : string,
+		_stackability : number,
+		_amount : number
+	) {
+		this.target = _target;
+		this.type = _type;
+		this.source = _source;
+		this.stackability = _stackability;
+		this.amount = _amount;
+	}
+}
+
+
+class c_creature {
+	public charname: String;
+	public core_components = {};
+	public levels = [];
+	public secondary_components = {};
+	public current_active_effects : c_effect[] = [];
+
+
+    constructor(name = "Fumbles") {
+        this.charname = name;
+		// port of data from fumbles!
+		this.core_components = {};
+		this.levels = [];
+		this.secondary_components = {};
+		// TODO Slots granted
+		// TODO Items equipped
+		// TODO Inventory
+		// TODO temporary effects
+		
+		// Non save data, should be reevaluated all the time
+		this.current_active_effects = new Array<c_effect>;
+    }
+
+	load(charOb : c_creature) {
+		this.charname = charOb.charname;
+		this.core_components = charOb.core_components;
+		this.levels = charOb.levels;
+		this.secondary_components = charOb.secondary_components;
+		this.consolidateEffects();
+	}
+
+
+	consolidatedBonus(target_stat : String) {
+		let nBo = 0;
+		let bonusesForThisOneStatWeAreCheckingOut = [];
+		let ourTopBonuses : Map<String,c_effect>= new Map<String,c_effect>;
+		// Assist [target,type,stackability,amount]
+		let target = 0;
+		let type = 1;
+		let stackability = 2;
+		let amount = 3;
+		let source = 4; // TODO add source tracking to slot 5 in effect consolidation
+		for (let index : number= 0; index < this.current_active_effects.length; index++) {
+			let current_eff : c_effect = this.current_active_effects[index];
+			if(current_eff.target == target_stat)
+			{
+				if(current_eff.type in ourTopBonuses.keys())
+				{
+					// TODO How do I want to handle stacking?
+					// Current:
+					// 0 - stack indefnitely
+					// 1 - stack once
+					// n - stack n times
+					// negative numbers saved for special cases?
+
+					// Check stackability // to start, just stack everything with 0
+					let top_bon : c_effect = ourTopBonuses.get(current_eff.type) as c_effect; // What the fuck
+					if(current_eff.stackability == 0)
+					{
+						if(top_bon == null) {continue;}
+						if (!top_bon.source.endsWith(")")) { 
+							// if not already () on end
+							top_bon.source += "(" + top_bon.amount +")";
+						}
+						top_bon.amount += current_eff.amount;
+						top_bon.source += ", " + current_eff.source + "(" + current_eff.amount + ")";
+						
+					}
+					else if(top_bon.amount < current_eff.amount)
+					{
+						// replace
+						top_bon = current_eff;
+					}
+				} else {
+					// add
+					let new_effect = new c_effect(current_eff.target,current_eff.type,current_eff.source,current_eff.stackability,current_eff.amount);
+					ourTopBonuses.set(current_eff.type, new_effect);
+				}
+			}
+		}
+		if(target == 49){
+			console.log("topper");
+			console.log(ourTopBonuses);
+		}
+		// sum bonus for real now
+		for (var key in ourTopBonuses.keys()) {
+			let bonus = ourTopBonuses.get(key);
+			if(bonus != null) {
+			nBo += bonus.amount;
+			}
+		}
+		let consilidatedBonusObjectro = {
+			"total":nBo,
+			"bonuses":ourTopBonuses
+		}
+		return consilidatedBonusObjectro;
+	}
+
+
+	consolidateEffects()
+	{
+		let theEffects = [];
+		// Cycle through things in the guy
+		// Core Components
+		for (let index = 0; index < this.core_components.length; index++) {
+			const element = this.core_components[index];
+			theEffects = theEffects.concat(this.shuck_list(element.attributes))
+		}
+		// Levels
+		for (let index = 0; index < this.levels.length; index++) {
+			const element = this.levels[index];
+			theEffects = theEffects.concat(this.shuck_list(element));
+			
+		}
+		// Secondary components (wrong order?)
+		for (let index = 0; index < this.secondary_components.length; index++) {
+			const element = this.secondary_components[index];
+			theEffects = theEffects.concat(this.shuck_list(element.attributes))
+			
+		}
+		// Equipment
+		this.current_active_effects = theEffects;
+	}
+
+	shuck_list(listyBoi) {
+		let returnable = [];
+		for (let index = 0; index < listyBoi.length; index++) {
+			const element = listyBoi[index];
+			console.log(listyBoi.name);
+			let feat = this.shuck_feat(element);
+			returnable = returnable.concat(feat);
+			
+		}
+		return returnable;
+	}
+
+	shuck_feat(feat) {
+		let returnable = [];
+		for (let index = 0; index < feat.effects.length; index++) {
+			const element = [...feat.effects[index]];
+			element.push(feat.name);
+			returnable.push(element);
+		}
+		return returnable;
+	}
+}

@@ -1,0 +1,444 @@
+
+:root {
+  --gradientPrimary: #0000cc;
+  --gradientSecondary: #000011;
+}
+
+
+body {
+  background-attachment:fixed;
+  height:100%;
+	background-image: linear-gradient(to bottom left, #151515, #303030);
+	background-color: black;
+	font-family: "Arial", Arial, sans-serif;
+	color:white;	
+	text-shadow: 2px 2px 4px #000000;
+}
+h1   {color: white;}
+p    {
+    font-size: 18px;
+}
+a {
+	color:cyan
+}
+.small-note {
+    color:cyan;
+    font-size: 14px;
+}
+
+td {
+	text-align:center;
+}
+
+.container {
+	background-image: linear-gradient(to bottom right, var(--gradientPrimary), var(--gradientSecondary));
+	background-color:#0000cc;
+	margin:10px;
+	padding:10px;
+	border-style:solid;
+	border-width:4px;
+	border-color:white;
+	border-radius:10px;
+	box-shadow: 3px 3px 25px grey;	
+}
+
+.spells {
+	background-image: linear-gradient(to bottom right, var(--gradientPrimary), var(--gradientSecondary));
+	
+}
+
+ /* unvisited link */
+a:link {
+  color: #CCCCCC;
+  text-decoration:underline;
+}
+
+/* visited link */
+a:visited {
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+/* mouse over link */
+a:hover {
+  color: hotpink;
+}
+
+/* selected link */
+a:active {
+  color: blue;
+} 
+
+
+
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    -webkit-animation-name: fadeIn; /* Fade in the background */
+    -webkit-animation-duration: 0.4s;
+    animation-name: fadeIn;
+    animation-duration: 0.4s
+  }
+  
+  /* Modal Content */
+  .modal-content-bottom {
+    position: fixed;
+    bottom: 0;
+    left:15%;
+    background-color: #fefefe;
+    width: 100%;
+    -webkit-animation-name: slideInBottom;
+    -webkit-animation-duration: 0.2s;
+    animation-name: slideInBottom;
+    animation-duration: 0.2s
+  }
+  .modal-content-top {
+    position: relative;
+    bottom: 0;
+    background-color: #fefefe;
+    width: 100%;
+    -webkit-animation-name: slideInTop;
+    -webkit-animation-duration: 0.2s;
+    animation-name: slideInTop;
+    animation-duration: 0.2s
+  }
+  
+  /* The Close Button */
+  .close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .modal-header {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+  }
+  
+  .modal-body {padding: 2px 16px;}
+  
+  .modal-footer {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+  }
+
+  /* Add Animation */
+  @-webkit-keyframes slideInBottom {
+    from {bottom: -300px; opacity: 0} 
+    to {bottom: 0; opacity: 1}
+  }
+  
+  @keyframes slideInBottom {
+    from {bottom: -300px; opacity: 0}
+    to {bottom: 0; opacity: 1}
+  }
+  
+  @-webkit-keyframes slideInTop {
+    from {bottom: 600px; opacity: 0} 
+    to {bottom: 0; opacity: 1}
+  }
+  
+  @keyframes slideIntop {
+    from {bottom: 600px; opacity: 0}
+    to {bottom: 0; opacity: 1}
+  }
+  
+  @-webkit-keyframes fadeIn {
+    from {opacity: 0} 
+    to {opacity: 1}
+  }
+  
+  @keyframes fadeIn {
+    from {opacity: 0} 
+    to {opacity: 1}
+  }
+
+/* Tooltips */
+.tooltip {
+    position: relative;
+    /*display: inline-block;
+    border-bottom: 1px dotted black;
+    width: 150px;*/
+  }
+  
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  .tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+  }
+  
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+  }
+
+/* Rip from TKAS Gunrules*/
+
+body {
+    
+  font-family: "Verdana", sans-serif;
+}
+
+h3,h4,h5,h6 {
+    padding-top: 5px;
+	margin-top:3px;
+    font-style:italic;
+    margin-bottom: 2px;
+    padding-bottom: 0px;
+}
+h1,h2 {
+    text-align: center;
+}
+
+.wikitable {
+    border:1px solid gray;
+    border-collapse: collapse;
+}
+
+/* Tables */
+table {
+  border:1px solid gray;
+  /*width: 50%;*/
+  border-collapse: collapse;
+  text-align: center;
+}
+th {
+  /*width: 10px;*/
+  font-size: 12px;
+  padding: 2px;
+  margin:2px;
+  /*overflow: hidden;*/
+  border-bottom: 1px solid gray;
+}
+td {
+  padding:2px;
+  margin:2px;
+}
+
+
+
+tr {
+  background-color: #000088;
+}
+
+tr:nth-child(4n+0) {background-color: #000044;}
+tr:nth-child(4n+1) {background-color: #000044;}
+
+
+tr:hover {
+  background-color: #ffffff8c;
+}
+
+/* Flaired edges, by Tomas Theunissen */
+hr {
+    margin-top: 0px;
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right,rgba(255, 255, 255, 1), rgba(0, 0, 0, 0));
+}
+
+h2::after {
+  content: "";
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(255, 0, 0, 0.904), rgb(255, 255, 255, 1), rgba(0, 0, 0, 0));
+}
+
+.headerRule {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgb(255, 255, 255, 1), rgba(0, 0, 0, 0));
+}
+
+@media only screen and (min-width:100px) {
+        /* For mobile phones: */
+        .reader {
+            padding: 0em;
+            margin-left: 0em;
+            margin-right: 0em;
+        }
+    }
+    @media only screen and (min-width:620px) {
+        /* For mobile phones and tablets: */
+        .reader {
+            padding: 1em;
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+    }
+    @media only screen and (min-width: 1600px) {
+        /* For Desktop: */
+        .reader {
+            padding: 1em;
+            margin-left: 20%;
+            margin-right: 20%;
+        }
+    }
+
+/* From necro page */
+
+  .itembox {
+    box-shadow:3px 3px 25px black;
+    width:25%;
+    float:right;clear:right;
+    margin-right: -20px;
+    border-right: none;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .infobox {
+    text-align: end;
+  }
+
+/* Fucking Clearfix */
+	.clearfix::after {
+		content: "";
+		clear: both;
+		display: table;
+	}
+
+
+/* Buttons */
+
+button {
+	background-color: cyan;
+	background-image: linear-gradient(to bottom right, transparent, black);
+	border:none;
+	border-radius: 10px;
+	box-shadow: 0px 0px 5px black, 0 0 3px white inset;
+	color: white;
+	font-weight: bold;
+	padding:3px;
+}
+
+button:hover {
+	background-image: linear-gradient(to bottom right, transparent, black);
+	box-shadow: 0px 0px 5px white, 0 0 3px black inset;
+	
+}
+
+button:active {
+	background-image: linear-gradient(to bottom right, black, transparent);
+	box-shadow: 0px 0px 5px black, 0 0 5px black inset;
+	
+}
+
+button:disabled {
+	background-image: linear-gradient(to bottom right, black, gray);
+	opacity: 50%;
+}
+
+.neg {
+	background-color: red;
+}
+
+.pos {
+	background-color: lime;
+}
+
+.butt {	
+	background-image: linear-gradient(to bottom right, transparent, black);
+	border:none;
+	border-radius: 50px;
+	box-shadow: 0px 0px 5px black, 0 0 3px white inset;  color: black;
+	color: transparent;
+	text-shadow: 0 0 0 white,0 0 5px white;
+	font-weight: bold;
+	padding:8px;
+	font-size: 18px;
+}
+
+.butt:hover {	
+	background-image: linear-gradient(to bottom right, transparent, black);
+	box-shadow: 0px 0px 5px white, 0 0 3px black inset;
+}
+
+.butt:active {	
+	background-image: linear-gradient(to bottom right, black, transparent);
+	box-shadow: 0px 0px 5px black, 0 0 5px black inset;
+	text-shadow: 0 0 0 white,0 0 5px black;
+}
+
+.butt:disabled {	
+	background-image: linear-gradient(to bottom right, black, rgba(0, 0, 0, 0.5));
+	opacity: 50%;
+}
+
+.blackbox {  
+	background-color: black;
+	border-radius: 20px;
+	border: 1px solid white;
+	padding: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-top: 5px;
+	background-image: linear-gradient(-10deg, transparent, #ffffff3b);
+	box-shadow: 0 0 10px black, 1px 1px 5px #ffffff8a inset;
+	max-width: 450px;
+}
+
+.stack_right {
+	float:right;
+}
+
+/* project specific */ 
+
+.shield {
+	border-bottom-left-radius: 45px 75px;
+	border-bottom-right-radius: 45px 75px;
+	border-top-left-radius: 45px 15px;
+	border-top-right-radius: 45px 15px;
+	width: 66px;
+	height: 80px;
+	text-align: center;
+	align-content: center;
+	line-height: 66px;
+	padding: 0px;
+	margin:0px;
+	background-image:radial-gradient(red, maroon, black);
+	position:absolute;
+	top:30px;
+	
+}

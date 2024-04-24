@@ -1,0 +1,14 @@
+compile 
+npx tsc
+npm start
+
+Watch mode:
+in different console window
+npx tsc --watch
+
+
+
+
+
+Uncommented     //"module": "commonjs",  because charSheet was having trouble existing. Exporting.
+On reference to this: https://stackoverflow.com/questions/43042889/typescript-referenceerror-exports-is-not-defined
